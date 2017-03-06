@@ -4,6 +4,6 @@
   :jvm-opts ["-Xmx1g" "-server"]
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/test.generative "0.5.2"]
-                 [com.datomic/datomic-free "0.9.5561"]
+                 [com.datomic/datomic-pro "0.9.5561"]
                  [incanter/incanter-charts "1.9.0"]
                  [incanter/incanter-pdf "1.9.0"]])
