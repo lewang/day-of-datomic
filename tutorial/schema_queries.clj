@@ -11,6 +11,34 @@
  '[datomic.samples.repl :as repl])
 
 (def conn (repl/scratch-conn))
+
+(d/transact
+ conn
+ [{:db/ident :red}
+  {:db/ident :green}
+  {:db/ident :blue}
+  {:db/ident :yellow}])
+
+(defn make-idents
+  [x]
+  (mapv #(hash-map :db/ident %) x))
+
+(def sizes [:small :medium :large :xlarge])
+
+(def types [:shirt :pants :dress :hat])
+	;;; ⇒ #'mbrainz/types
+
+(def colors [:red :green :blue :yellow])
+	;;; ⇒ #'mbrainz/colors
+
+(d/transact conn (make-idents sizes))
+	;;; ⇒ <err>
+	;;;   CompilerException java.lang.RuntimeException: Unable to resolve symbol: make-idents in this context, compiling:(/Users/lewang/src/day-of-datomic/tutorial/schema_queries.clj:1:18)
+
+(d/transact conn (make-idents types))
+	;;; ⇒ <err>
+	;;;   CompilerException java.lang.RuntimeException: Unable to resolve symbol: make-idents in this context, compiling:(/Users/lewang/src/day-of-datomic/tutorial/schema_queries.clj:1:18)
+
 (repl/transact-all conn (repl/resource "day-of-datomic/social-news.edn"))
 (def db (d/db conn))
 

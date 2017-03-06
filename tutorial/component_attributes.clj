@@ -5,12 +5,17 @@
 ;   By using this software in any fashion, you are agreeing to be bound by
 ;   the terms of this license.
 ;   You must not remove this notice, or any other, from this software.
+(ns component-attributes)
 
 (require
  '[datomic.api :as d]
  '[datomic.samples.repl :as repl])
 
-(def conn (repl/scratch-conn))
+(def uri "datomic:dev://localhost:4334/social")
+(d/create-database uri)
+(def conn (d/connect uri))
+
+;; (def conn (repl/scratch-conn))
 (repl/transact-all conn (repl/resource "day-of-datomic/social-news.edn"))
 
 ;; create a story and some comments
